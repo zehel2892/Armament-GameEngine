@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1450499196 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/main.cpp
+	<iostream>
+	<SDL2/SDL.h>
+	<GL/glew.h>
+	"canvas.h"
+
+1450498511 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.cpp
+	"canvas.h"
+
+1450498925 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.h
+
