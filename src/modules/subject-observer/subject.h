@@ -4,7 +4,7 @@
 #include <vector>
 
 
-
+/// Subject Class is the base class for all other game objects
 
 
 /** we use namespace ns_armament::ns_component::ns_observer so that we can
@@ -13,6 +13,7 @@
 // using namespace ns_armament::ns_component::ns_observer;
 namespace ns_armament { namespace ns_entity {
   class Entity; // Forward declaration
+  enum EModule{}; // Forward declaration
    }}
 
 namespace ns_armament { namespace ns_component {
@@ -35,6 +36,25 @@ public:
      *  \return A reference to this
      */
     Subject& operator=(const Subject& other);
+public:
+    /** Enumerations which provide easy representation of notifications
+     */
+     enum ENotification{
+
+         nt_ATTACH_OBSERVER_SUCCESS,
+         nt_ATTACH_OBSERVER_FAILURE,
+
+         nt_DETACH_OBSERVER_SUCCESS,
+         nt_DETACH_OBSERVER_FAILURE,
+
+         nt_ADD_COMPONENT_SUCCESS,
+         nt_ADD_COMPONENT_FAILURE,
+
+         nt_REMOVE_COMPONENT_SUCCESS,
+         nt_REMOVE_COMPONENT_FAILURE
+
+
+     };
 
 public:
   /** Public interfaces available to the class */
@@ -42,10 +62,11 @@ public:
   void Attach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
   void Detach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
   /// Send notifications
-  void Notify(ns_entity::Entity & ent);
+  void Notify(ns_entity::Entity & ent , ENotification note);
 
   /// Generate notifications
-  void GenNotification(ns_entity::Entity & ent );
+  void GenNotification(ns_entity::Entity & ent , ENotification note);
+  void GenNotification(ns_entity::EModule mod , ENotification note);
 
 
 protected:

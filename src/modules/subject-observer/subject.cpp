@@ -3,6 +3,7 @@
 #include "subject.h"
 #include "entity.h" // entity.h needs forward declaration
 
+#include <iostream>
 
 
 using namespace ns_armament::ns_subject;
@@ -31,6 +32,11 @@ Subject& Subject::operator=(const Subject& rhs)
   return *this;
 }
 
+/** Attach Observer to the Subject
+ *  \param Reference to an object of class entity
+ *  \return call to entity.AddComponent() with Reference to this and Reference to Observer object
+ */
+
 void Subject::Attach(ns_entity::Entity & ent  , ns_component::Observer & obs)
 {   /** We are converting the reference to a pointer to pass to std::vector
      */
@@ -40,7 +46,15 @@ void Subject::Attach(ns_entity::Entity & ent  , ns_component::Observer & obs)
      */
     m_vpObserverList.push_back(p);
 
-    ent.AddComponent(*this,obs);
+    if(m_vpObserverList[m_vpObserverList.size()-1] == p)
+    {
+
+      std::cout<<"Successfully attached Observer : nt_ATTACH_OBSERVER_SUCCESS  :"<<std::endl;
+       GenNotification(ent,nt_ATTACH_OBSERVER_SUCCESS);
+      ent.AddComponent(*this,obs);
+    }
+
+
 
 
 
@@ -60,6 +74,12 @@ void Subject::Detach(ns_entity::Entity & ent , ns_component::Observer & obs)
          * 0+i = i;
          */
          m_vpObserverList.erase(m_vpObserverList.begin()+i);
+         if(m_vpObserverList[i] != p)
+         {
+             GenNotification(ent,nt_DETACH_OBSERVER_SUCCESS);
+         }
+         else
+             GenNotification(ent,nt_DETACH_OBSERVER_FAILURE);
         }
     }
 
@@ -67,19 +87,27 @@ void Subject::Detach(ns_entity::Entity & ent , ns_component::Observer & obs)
 
 }
 
-void Subject::Notify(ns_entity::Entity & ent)
+void Subject::Notify(ns_entity::Entity & ent , ENotification note)
 {
 for(unsigned int i=0; i<m_vpObserverList.size();i++)
     {
         m_vpObserverList[i]->Update(ent);
+        std::cout<<note<<std::endl;
     }
 
 }
 
-void Subject::GenNotification(ns_entity::Entity & ent)
+void Subject::GenNotification(ns_entity::Entity & ent , ENotification note)
 {
-    this->Notify(ent);
+    this->Notify(ent,note);
 
+}
+
+void Subject::GenNotification(ns_entity::EModule mod , ENotification note)
+{
+    /// Pending
+    /// This is a bad idea create a uniform notification system where we just pass in the Entity & ent and
+    /// it will automatically figure out the EModule part
 }
 
 
