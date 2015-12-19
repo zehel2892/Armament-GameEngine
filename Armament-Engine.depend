@@ -1,12 +1,40 @@
 # depslib dependency file v1.0
-1450499196 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/main.cpp
+1450522992 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/main.cpp
 	<iostream>
 	<SDL2/SDL.h>
 	<GL/glew.h>
 	"canvas.h"
 
-1450498511 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.cpp
+1450517157 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.cpp
 	"canvas.h"
 
-1450498925 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.h
+1450509254 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.h
+	<SDL2/SDL.h>
+	<GL/glew.h>
+	<iostream>
+
+1450529709 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.cpp
+	"entity.h"
+	"component.h"
+
+1450531980 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.h
+	<vector>
+	"subject.h"
+
+1450530512 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.cpp
+	"observer.h"
+	"subject.h"
+	"entity.h"
+
+1450531908 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.h
+	<vector>
+
+1450529612 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/observer.cpp
+	"observer.h"
+
+1450530894 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/observer.h
+	"component.h"
+
+1450531852 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/component.h
+	"entity.h"
 

@@ -1,43 +1,76 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+#include <SDL2/SDL.h>
+#include <GL/glew.h>
+#include <iostream>
 
+////////////////////////////////////////////////////////////////////////////////
+// NAMESPACE STARTS //
+namespace ns_armament { namespace ns_canvas {
+////////////////////////////////////////////////////////////////////////////////
 class Canvas
 {
-  public:
-    /** Default constructor */
-    Canvas();
-    /** Default destructor */
-    virtual ~Canvas();
-    /** Copy constructor
-     *  \param other Object to copy from
-     */
-    Canvas(const Canvas& other);
+public:
+
+typedef unsigned int td_uint;
+
+  /** Default constructor */
+  Canvas();
+   /** Default destructor */
+  virtual ~Canvas();
+  /** Copy constructor
+    *  \param other Object to copy from
+    */
+  Canvas(const Canvas& other);
     /** Assignment operator
      *  \param other Object to assign from
      *  \return A reference to this
      */
-    Canvas& operator=(const Canvas& other);
-    /** Access m_uiCount
-     * \return The current value of m_uiCount
+  Canvas& operator=(const Canvas& other);
+
+
+
+
+  Canvas(td_uint WIDTH , td_uint HEIGHT, std::string title);
+     /** Access utility functions here
+      */
+public:
+        /** Runtime methods defined here
+         */
+       void  Update();
+
+public:
+    /** Access activation status of the canvas
+     *  \return m_bIsCanvasActive
+     *  \brief Shows whether the canvas is active or not
      */
-    unsigned int GetCount() { return m_uiCount; }
-    /** Set m_uiCount
-     * \param val New value to set
-     */
-    void SetCount(unsigned int val) { m_uiCount = val; }
-    /** Access m_bCanvasActive
-     * \return The current value of m_bCanvasActive
-     */
-    bool GetbCanvasActive() { return m_bCanvasActive; }
-    /** Set m_bCanvasActive
-     * \param val New value to set
-     */
-    void SetbCanvasActive(bool val) { m_bCanvasActive = val; }
-  protected:
-  private:
-    unsigned int m_uiCount; //!< Member variable "m_uiCount"
-    bool m_bCanvasActive; //!< Member variable "m_bCanvasActive"
+
+
+  bool GetIsCanvasActive() { return m_bIsCanvasActive; }
+
+protected:
+
+
+  bool m_bIsCanvasActive; //!< Member variable "m_bCanvasActive"
+
+  void InputManager();
+  void Clear();
+
+private:
+
+  SDL_Window  * m_pWindow;
+  SDL_GLContext m_GLContext;
+
+
+
+
+
 };
+
+////////////////////////////////////////////////////////////////////////////////
+// NAMESPACE ENDS //
+ } } // _namespace ends here
+////////////////////////////////////////////////////////////////////////////////
 
 #endif // CANVAS_H

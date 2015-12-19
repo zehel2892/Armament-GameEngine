@@ -13,6 +13,9 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/core/canvas" />
+					<Add directory="src/modules/entity-component" />
+					<Add directory="src/modules/subject-observer" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +25,9 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/core/canvas" />
+					<Add directory="src/modules/entity-component" />
+					<Add directory="src/modules/subject-observer" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -31,6 +37,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Linker>
+			<Add library="GL" />
+			<Add library="SDL2" />
+			<Add library="/usr/local/lib/libSDL2.a" />
+			<Add library="GLEW" />
+		</Linker>
+		<Unit filename="src/common/includes/common.h" />
+		<Unit filename="src/core/canvas/canvas.cpp" />
+		<Unit filename="src/core/canvas/canvas.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/modules/entity-component/component.h" />
+		<Unit filename="src/modules/entity-component/entity.cpp" />
+		<Unit filename="src/modules/entity-component/entity.h" />
+		<Unit filename="src/modules/subject-observer/observer.cpp" />
+		<Unit filename="src/modules/subject-observer/observer.h" />
+		<Unit filename="src/modules/subject-observer/subject.cpp" />
+		<Unit filename="src/modules/subject-observer/subject.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
