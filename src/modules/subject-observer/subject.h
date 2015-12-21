@@ -58,23 +58,22 @@ public:
      };
 
 public:
-  /** Public interfaces available to the class */
+  /** Public interfaces available to the class
+   *    The model for the game engine will be something like a monarchy
+   *    There will be a King(Entity) Or a council of Kings(Entity)
+   *    They all can be ruled by a certain true king(Entity)
+   *        --->Like Robert Baratheon from Game of Thrones
+   *    The Subjects of the kings  may be kings(Entity)
+   *        --->Like Eddard Stark from Game of Thrones
+   *    There will be Subjects whhich may be some provincial lord
+   *        who will have other Observers below them.
+   *
+   */
+
   /// The caller of the Attach function will be of class subject
   void Attach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
   void Detach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
 
-  /** Attach Subject and its children to the given entity(whhich is like a king)
-   *    \param  The (king) Entity object to whhich we want to attach the caller
-   *            Subject(lords) and its Observers(citizens)
-   *
-   */
-  void AttachTo(ns_entity::Entity & ent);
-  /** Detach Subject and its children from the given entity(whhich is like a king)
-   *    \param  The (king) Entity object to whhich we want to detach the caller
-   *            Subject(lords) and its Observers(citizens)
-   *
-   */
-  void DetachFrom(ns_entity::Entity & ent);
 
 
   /// Send notifications
@@ -86,6 +85,20 @@ public:
 
 
 protected:
+
+    /** Attach Subject and its children to the given entity(whhich is like a king)
+     *    \param  The (king) Entity object to whhich we want to attach the caller
+     *            Subject(lords) and its Observers(citizens)
+     *
+     */
+    void AttachTo(ns_entity::Entity & ent);
+    /** Detach Subject and its children from the given entity(whhich is like a king)
+     *    \param  The (king) Entity object to whhich we want to detach the caller
+     *            Subject(lords) and its Observers(citizens)
+     *
+     */
+    void DetachFrom(ns_entity::Entity & ent);
+
 private:
     /** Private members available to the class */
     /** Observer list
@@ -99,7 +112,7 @@ private:
     /** Forward declarations are put here.
      * They should not be inherited as they will pollute the namespace
      */
-      ns_entity::Entity * e;
+     // ns_entity::Entity * e;
 
 
 

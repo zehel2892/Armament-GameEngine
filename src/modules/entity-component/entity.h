@@ -99,22 +99,24 @@ public:/** The methods which will be used to add and remove new compoents from
      void AddSubject(ns_subject::Subject & sub);
      void RemoveSubject(ns_subject::Subject & sub);
 
-protected:
-private:
-    std::vector<ns_subject::Subject *>m_vpSubjectList;
-    std::vector<ns_component::Observer *>m_vpGlobalObserverList;
-    /** The module type of the entity to be initialized by the overloaded constructor
+     /** The module type of the entity to be initialized by the overloaded constructor
      *  \param m_em_ModuleType means (member(m) which is an enum(em) and name is m_em_ModuleType
      *  \saves an EModule enum object
      */
     EModule m_em_ModuleType ;
 
+
+protected:
+private:
+    std::vector<ns_subject::Subject *>m_vpSubjectList;
+    std::vector<ns_component::Observer *>m_vpGlobalObserverList;
+
 private:
     /** Forward declarations are put here.
      * They should not be inherited as they will pollute the namespace
      */
-    ns_subject::Subject * s; // Forward declaration
-    ns_component::Observer *o; //Forward declaration
+    //ns_subject::Subject * s; // Forward declaration
+    //ns_component::Observer *o; //Forward declaration
 
 
 };

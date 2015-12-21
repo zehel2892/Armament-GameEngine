@@ -32,6 +32,14 @@ Subject& Subject::operator=(const Subject& rhs)
   return *this;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
+// __PUBLIC_INTERFACE__
+//
+// ATTACH AND DETACH OBSERVERS
+//
+////////////////////////////////////////////////////////////////////////////////
+
 /** Attach Observer to the Subject
  *  \param Reference to an object of class entity
  *  \return call to entity.AddComponent() with Reference to this and Reference to Observer object
@@ -49,15 +57,15 @@ void Subject::Attach(ns_entity::Entity & ent  , ns_component::Observer & obs)
     if(m_vpObserverList[m_vpObserverList.size()-1] == p)
     {
 
-      std::cout<<"Successfully attached Observer : nt_ATTACH_OBSERVER_SUCCESS  :"<<std::endl;
+      std::cout<<"SUCCESS : Attach Observer Successfull  : nt_ATTACH_OBSERVER_SUCCESS  :"<<std::endl;
        GenNotification(ent,nt_ATTACH_OBSERVER_SUCCESS);
       ent.AddComponent(*this,obs);
     }
-
-
-
-
-
+    else
+        {
+            std::cerr<<"WARNING : Attach Observer Unsuccessfull : nt_ATTACH_OBSERVER_FAILURE :"<<std::endl;
+            GenNotification(ent,nt_ATTACH_OBSERVER_FAILURE);
+        }
 }
 
 void Subject::Detach(ns_entity::Entity & ent , ns_component::Observer & obs)
@@ -87,6 +95,18 @@ void Subject::Detach(ns_entity::Entity & ent , ns_component::Observer & obs)
 
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// __HELPER_METHODS__
+//
+// ATTACH AND DETACH SUBJECT TO AN ENTITY
+//
+////////////////////////////////////////////////////////////////////////////////
+
+
+
 void Subject::AttachTo(ns_entity::Entity & ent)
 {
     /** We are converting pointer this to a reference *this
@@ -103,11 +123,21 @@ void Subject::DetachFrom(ns_entity::Entity & ent)
     ent.RemoveSubject(*this);
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+// __PUBLIC_INTERFACE__
+//
+// NOTIFICATION SYSTEM
+////////////////////////////////////////////////////////////////////////////////
+
+
+
 void Subject::Notify(ns_entity::Entity & ent , ENotification note)
 {
 for(unsigned int i=0; i<m_vpObserverList.size();i++)
     {
-        m_vpObserverList[i]->Update(ent);
+        m_vpObserverList[i]->Update(ent,note);
         std::cout<<note<<std::endl;
     }
 
@@ -127,5 +157,7 @@ void Subject::GenNotification(ns_entity::EModule mod , ENotification note)
     /// it will automatically figure out the EModule part
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
+// END NAMESPACES
 }} // end namespaces
+////////////////////////////////////////////////////////////////////////////////

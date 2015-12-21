@@ -14,7 +14,7 @@ class Component
   public:
 
 
-    virtual void Update(ns_entity::Entity & ent)=0;
+    virtual void Update(ns_entity::Entity & ent,ns_subject::Subject::ENotification & note)=0;
 
   protected:
   private:
