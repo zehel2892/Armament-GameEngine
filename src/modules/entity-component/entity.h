@@ -40,7 +40,10 @@ public:
 
 
 public:/** Enumerations which provide easy representation of notifications for
-        *  the Entity types possible and supported
+        *  the Entity types possible and supported.
+        * WARNING : Make sure that the enums are public and defined before the
+        *           functions which want to use them.
+        *
         */
 
     enum EModule{
@@ -57,19 +60,49 @@ public:/** Enumerations which provide easy representation of notifications for
 public:
       /** Overloaded constructors
        */
+      /* Overloaded constructor for class Entity
+       * \param EModule modType : which means that it will need a predefined
+       *                          enum object type from the enum EModule
+       * \save  Initialize the private member m_em_ModuleType with modType
+       *
+       * WARNING : Make sure to declare it below the enum EModule
+       */
       Entity(EModule modType);
 
+public:/** The methods which will be used to add and remove new compoents from
+        *   an entity are defined here
+        *
+        *   NOTE: The methods AddComponent() and RemoveComponent() will be called
+        *         from the Subject class method Attach(Entity &, Observer &)
+        *         The user has to just call sub.Attach(ent,obs);
+        *         where sub is an object of class Subject
+        *               ent is an object of class Entity passed as reference
+        *               obs is an object of class Observer passed as reference
+        */
 
-
-public:
-
-
-
+        /** Adds a particular Observer compoent to the given entity
+         *  \param  ns_subject::Subject & sub , which is the reference of an
+         *          object of class Subject defined in namespace ns_subject
+         *  \param  ns_component::Observer & obs , which is the reference of an
+         *          object of class Observer defined in namespace ns_component
+         */
      void AddComponent(ns_subject::Subject & sub    , ns_component::Observer & obs);
+
+        /** Adds a particular Observer compoent to the given entity
+         *  \param  ns_subject::Subject & sub , which is the reference of an
+         *          object of class Subject defined in namespace ns_subject
+         *  \param  ns_component::Observer & obs , which is the reference of an
+         *          object of class Observer defined in namespace ns_component
+         */
      void RemoveComponent(ns_subject::Subject & sub , ns_component::Observer & obs);
+
+     void AddSubject(ns_subject::Subject & sub);
+     void RemoveSubject(ns_subject::Subject & sub);
+
 protected:
 private:
-    std::vector<ns_subject::Subject *> m_vpSubjectList;
+    std::vector<ns_subject::Subject *>m_vpSubjectList;
+    std::vector<ns_component::Observer *>m_vpGlobalObserverList;
     /** The module type of the entity to be initialized by the overloaded constructor
      *  \param m_em_ModuleType means (member(m) which is an enum(em) and name is m_em_ModuleType
      *  \saves an EModule enum object

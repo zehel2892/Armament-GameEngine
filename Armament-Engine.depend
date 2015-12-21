@@ -1,11 +1,10 @@
 # depslib dependency file v1.0
-1450547980 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/main.cpp
+1450603964 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/main.cpp
 	<iostream>
 	<SDL2/SDL.h>
 	<GL/glew.h>
 	"canvas.h"
 	"entity.h"
-	"observer.h"
 
 1450517157 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/core/canvas/canvas.cpp
 	"canvas.h"
@@ -15,22 +14,22 @@
 	<GL/glew.h>
 	<iostream>
 
-1450547237 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.cpp
+1450621095 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.cpp
 	"entity.h"
 	"component.h"
 	<iostream>
 
-1450547144 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.h
+1450619850 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/entity-component/entity.h
 	<vector>
 	"subject.h"
 
-1450548394 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.cpp
+1450621929 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.cpp
 	"observer.h"
 	"subject.h"
 	"entity.h"
 	<iostream>
 
-1450546582 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.h
+1450681905 /home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/subject.h
 	<vector>
 
 1450529612 source:/home/zehel/Documents/gameDev/armament-engine/Armament-Engine/src/modules/subject-observer/observer.cpp

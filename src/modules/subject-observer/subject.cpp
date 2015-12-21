@@ -87,6 +87,22 @@ void Subject::Detach(ns_entity::Entity & ent , ns_component::Observer & obs)
 
 }
 
+void Subject::AttachTo(ns_entity::Entity & ent)
+{
+    /** We are converting pointer this to a reference *this
+     *  by de-referencing the pointer this
+     */
+    ent.AddSubject(*this);
+}
+
+void Subject::DetachFrom(ns_entity::Entity & ent)
+{
+    /** We are converting pointer this to a reference *this
+     *  by de-referencing the pointer this
+     */
+    ent.RemoveSubject(*this);
+}
+
 void Subject::Notify(ns_entity::Entity & ent , ENotification note)
 {
 for(unsigned int i=0; i<m_vpObserverList.size();i++)
@@ -106,7 +122,8 @@ void Subject::GenNotification(ns_entity::Entity & ent , ENotification note)
 void Subject::GenNotification(ns_entity::EModule mod , ENotification note)
 {
     /// Pending
-    /// This is a bad idea create a uniform notification system where we just pass in the Entity & ent and
+    /// This is a bad idea.
+    /// Create a uniform notification system where we just pass in the Entity & ent and
     /// it will automatically figure out the EModule part
 }
 

@@ -38,6 +38,7 @@ public:
     Subject& operator=(const Subject& other);
 public:
     /** Enumerations which provide easy representation of notifications
+     *  NOTE : Declare the enums before any functions which want to use them
      */
      enum ENotification{
 
@@ -61,6 +62,21 @@ public:
   /// The caller of the Attach function will be of class subject
   void Attach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
   void Detach(ns_entity::Entity & ent ,  ns_component::Observer & obs);
+
+  /** Attach Subject and its children to the given entity(whhich is like a king)
+   *    \param  The (king) Entity object to whhich we want to attach the caller
+   *            Subject(lords) and its Observers(citizens)
+   *
+   */
+  void AttachTo(ns_entity::Entity & ent);
+  /** Detach Subject and its children from the given entity(whhich is like a king)
+   *    \param  The (king) Entity object to whhich we want to detach the caller
+   *            Subject(lords) and its Observers(citizens)
+   *
+   */
+  void DetachFrom(ns_entity::Entity & ent);
+
+
   /// Send notifications
   void Notify(ns_entity::Entity & ent , ENotification note);
 

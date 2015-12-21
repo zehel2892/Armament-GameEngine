@@ -30,36 +30,61 @@ Entity& Entity::operator=(const Entity& rhs)
 
 Entity::Entity(EModule modType):m_em_ModuleType(modType)
 {
-    std::cout<<"Entity constructed with EModule :"<<m_em_ModuleType<<std::endl;
+    std::cout<<"Entity constructed with EModule : "<<m_em_ModuleType<<std::endl;
 }
 
 
 void Entity::AddComponent(ns_subject::Subject & sub , ns_component::Observer & obs)
-{   ns_subject::Subject * p = &sub;
-    m_vpSubjectList.push_back(p);
-    if(m_vpSubjectList[m_vpSubjectList.size()-1] == p)
+{  /* ERROR : We are storing a pointer to class Subject
+    *         What we should be storing is a compoent i.e an Observer
+    */
+    ns_component::Observer * p = &obs;
+    m_vpGlobalObserverList.push_back(p);
+    if(m_vpGlobalObserverList[m_vpGlobalObserverList.size()-1] == p)
     {
         std::cout<<"Successfully added component : nt_ADD_COMPONENT_SUCCESS "<<std::endl;
         sub.GenNotification(*this,sub.nt_ADD_COMPONENT_SUCCESS);
+        AddSubject(sub);
     }
+
 
 }
 
 void Entity::RemoveComponent(ns_subject::Subject & sub , ns_component::Observer & obs)
-{   ns_subject::Subject * p = &sub;
-    for (unsigned int i = 0; i < m_vpSubjectList.size(); ++i)
+{   ns_component::Observer * p = &obs;
+    for (unsigned int i = 0; i < m_vpGlobalObserverList.size(); i++)
     {
-        if(m_vpSubjectList[i]==p)
+        if(m_vpGlobalObserverList[i]==p)
         {/* This is a round about way of deleting the index
          * since the position can be expressed as
          * 0+i = i;
          */
-            m_vpSubjectList.erase(m_vpSubjectList.begin()+i);
+            m_vpGlobalObserverList.erase(m_vpGlobalObserverList.begin()+i);
             /// We need to send a reference
             sub.GenNotification(*this, sub.nt_REMOVE_COMPONENT_SUCCESS);
+            RemoveSubject(sub);
         }
     } // end for loop
 
+}
+
+void Entity::AddSubject(ns_subject::Subject& sub)
+{
+    ns_subject::Subject *p =&sub;
+    m_vpSubjectList.push_back(p);
+
+} // end AddSubject()
+
+void Entity::RemoveSubject(ns_subject::Subject& sub)
+{
+    ns_subject::Subject * p = &sub;
+    for(unsigned int i=0 ; i<m_vpSubjectList.size();i++)
+    {
+        if (m_vpSubjectList[i]==p)
+        {
+            m_vpSubjectList.erase(m_vpSubjectList.begin()+i);
+        }
+    } // end for loop
 }
 
 

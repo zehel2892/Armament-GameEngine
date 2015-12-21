@@ -21,12 +21,9 @@ int main(int argc, char **argv)
   std::cout<<"Hello world"<<std::endl;
   Canvas display(640,480,"SDL window");
 
+  ns_entity::Entity ent(ns_entity::Entity::en_GAME_ENGINE);
   ns_subject::Subject sub;
-
   ns_component::Observer obs;
-
-  ns_entity::Entity ent(ns_entity::Entity::en_PROJECT_MANAGER);
-
   sub.Attach(ent,obs);
 
 
